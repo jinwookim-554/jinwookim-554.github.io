@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" role="img" aria-labelledby="title desc">
+ <title id="title">PI-AES: from energy requirements to a learning policy</title>
+ <desc id="desc">EMS requirements and verified data inform an explicit MDP with physical constraints, leading to an executable reinforcement-learning policy.</desc>
+ <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="m1 1 6 3-6 3" fill="none" stroke="#426e55" stroke-width="1.4"/></marker></defs>
+ <rect width="720" height="440" fill="#edf2e9"/>
+ <g font-family="Segoe UI,Arial,sans-serif">
+  <text x="38" y="48" font-size="24" letter-spacing="3" fill="#4b6e56">PI-AES</text>
+  <g fill="#fff" stroke="#b6c9af" stroke-width="2"><rect x="38" y="79" width="280" height="119" rx="12"/><rect x="38" y="225" width="280" height="119" rx="12"/><rect x="387" y="111" width="295" height="201" rx="12"/></g>
+  <g fill="none" stroke="#426e55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M62 106h28v30H62zM68 114h16m-16 7h16m-16 7h10"/><path d="M63 258h28v36H63zM71 252h12m-6 14-7 13h14l-7 11"/></g>
+  <g fill="#264d38" font-size="25" font-weight="600"><text x="106" y="124">EMS requirements</text><text x="106" y="275">Physical constraints</text><text x="412" y="157">Explicit MDP</text></g>
+  <g fill="#667c5e" font-size="22"><text x="62" y="168">Demand · generation · data</text><text x="62" y="317">Battery · efficiency · limits</text><text x="412" y="200">States · actions · rewards</text><text x="412" y="239">Inspectable equations</text><text x="412" y="278">Executable environment</text></g>
+  <g fill="none" stroke="#426e55" stroke-width="2.5" marker-end="url(#arrow)"><path d="M318 139h35v45h34M318 285h35v-45h34M535 313v44"/></g>
+  <rect x="387" y="362" width="295" height="48" rx="24" fill="#244c38"/><text x="535" y="393" text-anchor="middle" font-size="24" fill="#f7faf4">RL policy</text>
+  <text x="38" y="399" font-size="20" fill="#667c5e">Model → verify → learn</text>
+ </g>
+</svg>
