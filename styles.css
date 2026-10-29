@@ -33,32 +33,36 @@ body{font-size:18px}.wrap{width:min(1160px,calc(100% - 80px))}.hero-bio{max-widt
 @media(max-width:360px){html{scroll-padding-top:180px}nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}.hero{grid-template-columns:minmax(0,1fr) 110px;gap:26px}.portrait-block{width:110px;margin-left:0}.portrait-frame{width:110px;padding:6px}.portrait-frame img{width:98px;height:122.5px}.hero h1{font-size:36px}.korean-name{font-size:20px}.header-inner{column-gap:8px}.language-switch{min-width:0;padding:8px}}
 @media(max-width:760px){.background-grid{grid-template-columns:minmax(0,1fr);gap:35px}.background-grid>div{min-width:0}}
 
-/* Beyond the papers: consistent project cards with manual navigation. */
-.project-carousel{position:relative;margin-top:32px}
-.project-carousel .project-grid{display:block;margin:0}
-.project-carousel .project-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start;min-width:0}
-.project-carousel .project-card+.project-card{margin-top:40px}
-.project-carousel.is-ready .project-card+.project-card{margin-top:0}
-.project-carousel .project-card[hidden]{display:none}
-.project-carousel .project-visual{grid-column:auto;grid-row:auto;aspect-ratio:1.5;margin:0;align-self:start;width:100%}
-.project-carousel .diagram-visual{border:1px solid #dce1d3;background:#edf1e8}
-.project-carousel .diagram-visual img{object-fit:contain;padding:12px 12px 42px}
+/* Beyond the papers: three cards, one-card smooth horizontal steps. */
+.project-carousel{--project-columns:3;position:relative;margin-top:26px}
+.project-carousel .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin:0}
+.project-carousel.is-ready .project-grid{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding-block:4px 12px;align-items:stretch}
+.project-carousel .project-grid::-webkit-scrollbar{display:none}
+.project-carousel .project-card{display:block;min-width:0}
+.project-carousel.is-ready .project-card{flex:0 0 calc((100% - 64px)/3);scroll-snap-align:start}
+.project-carousel .project-card[hidden]{display:block}
+.project-carousel .project-visual{grid-column:auto;grid-row:auto;aspect-ratio:1.61;margin:0;width:100%}
+.project-carousel .paper-project-visual{background:#fff}
+.project-carousel .paper-project-visual img{object-fit:contain;padding:12px 12px 40px}
+.project-carousel .visual-label{font-size:16px;line-height:1.5}
 .project-copy{min-width:0}
-.project-copy .project-meta{margin-top:0}
-.project-copy h3{font-size:34px;margin-top:12px}
-.project-copy .project-subtitle{font-size:23px;margin-top:12px;line-height:1.5}
-.project-copy>p:not(.project-subtitle){font-size:18px;color:#5e6d56;line-height:1.9;margin-top:14px}
-.project-copy .entry-topic-tags{margin-top:20px}
-.project-copy .project-details{margin-top:22px}
+.project-copy .project-meta{margin-top:20px}
+.project-copy h3{font-size:30px;margin-top:10px}
+.project-copy .project-subtitle{font-size:21px;margin-top:10px;line-height:1.5}
+.project-copy>p:not(.project-subtitle){font-size:18px;color:#5e6d56;line-height:1.85;margin-top:12px}
+.project-copy .entry-topic-tags{margin-top:18px}
+.project-copy .project-details{margin-top:20px}
 .project-details .quiet-link{display:inline-block;margin-top:12px;font-size:16px}
 .project-navigation{display:flex;align-items:center;justify-content:flex-end;gap:18px;margin-bottom:22px}
 .project-navigation[hidden]{display:none}
-.project-navigation button{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b3c3a6;border-radius:50%;background:transparent;color:var(--deep);font-size:26px;line-height:1;transition:background .15s,color .15s}
-.project-navigation button:hover{background:var(--deep);color:#fff}
+.project-navigation button{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b3c3a6;border-radius:50%;background:transparent;color:var(--deep);font-size:26px;line-height:1;transition:background .15s,color .15s}
+.project-navigation button:hover:not(:disabled){background:var(--deep);color:#fff}
+.project-navigation button:disabled{opacity:.3;cursor:default}
 .project-navigation button:focus-visible{outline:3px solid #6e8a56;outline-offset:4px}
-#project-position{font-size:16px;font-variant-numeric:tabular-nums;color:#5e6d56;min-width:64px;text-align:center}
-html[lang="ko"] .project-copy h3{font-size:30px}
-html[lang="ko"] .project-copy .project-subtitle{font-family:var(--sans);font-size:21px}
-@media(min-width:1400px){.project-carousel.is-ready{padding-inline:18px}.project-navigation{margin:0}.project-navigation button{position:absolute;top:130px}.project-navigation #project-prev{left:-60px}.project-navigation #project-next{right:-60px}#project-position{position:absolute;right:18px;top:-33px}}
-@media(max-width:760px){.project-carousel{margin-top:25px}.project-carousel .project-card{grid-template-columns:minmax(0,1fr);gap:24px}.project-navigation{justify-content:space-between;margin-bottom:20px}.project-carousel .project-visual{aspect-ratio:1.5;max-width:540px}.project-copy h3{font-size:30px}.project-copy .project-subtitle{font-size:22px}.project-copy>p:not(.project-subtitle){font-size:18px}.project-navigation button{width:48px;height:48px}html[lang="ko"] .project-copy h3{font-size:28px}}
-@media print{.project-navigation{display:none}.project-carousel .project-card[hidden]{display:grid}.project-carousel.is-ready .project-card+.project-card{margin-top:40px}.project-carousel .project-card{break-inside:avoid}}
+#project-position{font-size:16px;font-variant-numeric:tabular-nums;color:#5e6d56;min-width:82px;text-align:center}
+html[lang="ko"] .project-copy h3{font-size:26px}
+html[lang="ko"] .project-copy .project-subtitle{font-family:var(--sans);font-size:20px}
+@media(max-width:999px) and (min-width:700px){.project-carousel{--project-columns:2}.project-carousel.is-ready .project-card{flex-basis:calc((100% - 32px)/2)}.project-carousel .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:699px){.project-carousel{--project-columns:1;margin-top:24px}.project-carousel .project-grid{grid-template-columns:minmax(0,1fr)}.project-carousel.is-ready .project-card{flex-basis:100%}.project-navigation{justify-content:space-between;margin-bottom:18px}.project-copy h3{font-size:30px}.project-copy .project-subtitle{font-size:22px}html[lang="ko"] .project-copy h3{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.project-carousel .project-grid{scroll-behavior:auto}}
+@media print{.project-navigation{display:none}.project-carousel.is-ready .project-grid{display:grid;overflow:visible}.project-carousel .project-card{break-inside:avoid}}

@@ -15,31 +15,46 @@
   const index = document.getElementById('publication-index');
   const projectCarousel = document.querySelector('.project-carousel');
   const projectCards = [...projectCarousel.querySelectorAll('.project-card')];
+  const projectTrack = document.getElementById('project-slides');
   let projectIndex = 0;
   projectCarousel.classList.add('is-ready');
   projectCarousel.querySelector('.project-navigation').hidden = false;
 
-  function showProject(index) {
-    projectIndex = (index + projectCards.length) % projectCards.length;
+  const projectColumns = () => Number(getComputedStyle(projectCarousel).getPropertyValue('--project-columns')) || 3;
+  function showProject(index, animate = false) {
+    const columns = projectColumns();
+    projectIndex = Math.max(0, Math.min(index, projectCards.length - columns));
     projectCards.forEach((card, i) => {
-      card.hidden = i !== projectIndex;
+      card.hidden = false;
+      card.inert = i < projectIndex || i >= projectIndex + columns;
+      card.setAttribute('aria-hidden', String(card.inert));
       card.setAttribute('role', 'group');
       card.setAttribute('aria-roledescription', state.lang === 'en' ? 'slide' : '슬라이드');
       card.setAttribute('aria-label', `${i + 1} / ${projectCards.length}`);
     });
     document.getElementById('project-prev').setAttribute('aria-label', state.lang === 'en' ? 'Previous project' : '이전 프로젝트');
     document.getElementById('project-next').setAttribute('aria-label', state.lang === 'en' ? 'Next project' : '다음 프로젝트');
+    document.getElementById('project-prev').disabled = projectIndex === 0;
+    document.getElementById('project-next').disabled = projectIndex === projectCards.length - columns;
     const position = document.getElementById('project-position');
-    position.textContent = `${String(projectIndex + 1).padStart(2, '0')} / ${String(projectCards.length).padStart(2, '0')}`;
-    position.setAttribute('aria-label', `${projectIndex + 1} / ${projectCards.length} · ${projectCards[projectIndex].querySelector('h3').textContent}`);
+    position.textContent = `${projectIndex + 1}–${projectIndex + columns} / ${projectCards.length}`;
+    position.setAttribute('aria-label', state.lang === 'en' ? `Projects ${projectIndex + 1} through ${projectIndex + columns} of ${projectCards.length}` : `프로젝트 ${projectCards.length}개 중 ${projectIndex + 1}번부터 ${projectIndex + columns}번`);
+    const step = projectCards[1].offsetLeft - projectCards[0].offsetLeft;
+    projectTrack.scrollTo({left: projectIndex * step, behavior: animate && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant'});
   }
-  document.getElementById('project-prev').addEventListener('click', () => showProject(projectIndex - 1));
-  document.getElementById('project-next').addEventListener('click', () => showProject(projectIndex + 1));
+  document.getElementById('project-prev').addEventListener('click', () => showProject(projectIndex - 1, true));
+  document.getElementById('project-next').addEventListener('click', () => showProject(projectIndex + 1, true));
+  window.addEventListener('resize', () => showProject(projectIndex));
+  projectTrack.addEventListener('scrollend', () => {
+    const step = projectCards[1].offsetLeft - projectCards[0].offsetLeft;
+    const settledIndex = Math.round(projectTrack.scrollLeft / step);
+    if (settledIndex !== projectIndex) showProject(settledIndex);
+  });
   projectCarousel.addEventListener('keydown', event => {
     if (!event.target.closest('.project-navigation')) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
-      showProject(projectIndex + (event.key === 'ArrowLeft' ? -1 : 1));
+      showProject(projectIndex + (event.key === 'ArrowLeft' ? -1 : 1), true);
     }
   });
 
