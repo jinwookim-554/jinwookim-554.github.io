@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 360"><rect width="980" height="360" rx="12" fill="#f8faf6"/><g font-family="Segoe UI,Arial,sans-serif"><text x="45" y="48" font-size="15" letter-spacing="2" fill="#607559">PI-AES · PHYSICS-INFORMED POLICY GENERATION</text><g fill="#fff" stroke="#bacbb3" stroke-width="1.5"><rect x="45" y="100" width="240" height="145" rx="10"/><rect x="370" y="100" width="240" height="145" rx="10"/><rect x="695" y="100" width="240" height="145" rx="10"/></g><g fill="#274e3b" text-anchor="middle" font-size="22"><text x="165" y="145">EMS specification</text><text x="490" y="145">Explicit MDP</text><text x="815" y="145">Executable policy</text></g><g fill="#73806a" text-anchor="middle" font-size="15"><text x="165" y="182">Battery · demand · generation</text><text x="165" y="208">RAG + data validation</text><text x="490" y="182">States · actions · rewards</text><text x="490" y="208">Physical constraints</text><text x="815" y="182">Environment implementation</text><text x="815" y="208">Reinforcement learning</text></g><g fill="none" stroke="#4b7757" stroke-width="2"><path d="M295 170h62m-12-8 12 8-12 8M620 170h62m-12-8 12 8-12 8"/></g><text x="45" y="310" font-size="13" fill="#8b9883">Intermediate equations and code support human inspection</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" role="img" aria-labelledby="title desc">
+  <title id="title">PI-AES conceptual workflow</title><desc id="desc">Energy-management requirements connect to a physics-informed MDP and executable policies. This is a conceptual illustration.</desc>
+  <rect width="980" height="560" fill="#edf1e8"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="64" y="74" font-size="24" letter-spacing="3" fill="#607559">PI-AES</text>
+    <g fill="#fafbf8" stroke="#b3c4aa" stroke-width="2"><rect x="64" y="130" width="370" height="150" rx="14"/><rect x="546" y="130" width="370" height="150" rx="14"/><rect x="306" y="366" width="370" height="122" rx="14"/></g>
+    <g fill="#274e3b" text-anchor="middle" font-size="29"><text x="249" y="190">EMS requirements</text><text x="731" y="190">Explicit MDP</text><text x="491" y="417">Executable policy</text></g>
+    <g fill="#65785b" text-anchor="middle" font-size="23"><text x="249" y="235">RAG + data validation</text><text x="731" y="235">Physical constraints</text><text x="491" y="457">Reinforcement learning</text></g>
+    <g fill="none" stroke="#527858" stroke-width="3"><path d="M448 205h81m-13-10 13 10-13 10M731 294v32H491v26m-10-13 10 13 10-13"/></g>
+  </g>
+</svg>
+

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" role="img" aria-labelledby="title desc">
+  <title id="title">A-LAMP conceptual workflow</title><desc id="desc">Natural-language requirements connect to MDP modeling and policy generation. This is a conceptual illustration.</desc>
+  <rect width="980" height="560" fill="#edf1e8"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="64" y="74" font-size="24" letter-spacing="3" fill="#607559">A-LAMP</text>
+    <g fill="#fafbf8" stroke="#b3c4aa" stroke-width="2"><rect x="64" y="130" width="370" height="150" rx="14"/><rect x="546" y="130" width="370" height="150" rx="14"/><rect x="306" y="366" width="370" height="122" rx="14"/></g>
+    <g fill="#274e3b" text-anchor="middle" font-size="29"><text x="249" y="190">Task description</text><text x="731" y="190">MDP modeling</text><text x="491" y="417">Policy generation</text></g>
+    <g fill="#65785b" text-anchor="middle" font-size="23"><text x="249" y="235">Natural-language requirements</text><text x="731" y="235">States · actions · rewards</text><text x="491" y="457">Decision-making</text></g>
+    <g fill="none" stroke="#527858" stroke-width="3"><path d="M448 205h81m-13-10 13 10-13 10M731 294v32H491v26m-10-13 10 13 10-13"/></g>
+  </g>
+</svg>
