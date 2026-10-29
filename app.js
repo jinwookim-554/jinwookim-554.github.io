@@ -13,6 +13,35 @@
   const itemId = item => `${papers.includes(item) ? 'paper' : 'work'}-${item.id}`;
   const paperList = document.getElementById('paper-list');
   const index = document.getElementById('publication-index');
+  const projectCarousel = document.querySelector('.project-carousel');
+  const projectCards = [...projectCarousel.querySelectorAll('.project-card')];
+  let projectIndex = 0;
+  projectCarousel.classList.add('is-ready');
+  projectCarousel.querySelector('.project-navigation').hidden = false;
+
+  function showProject(index) {
+    projectIndex = (index + projectCards.length) % projectCards.length;
+    projectCards.forEach((card, i) => {
+      card.hidden = i !== projectIndex;
+      card.setAttribute('role', 'group');
+      card.setAttribute('aria-roledescription', state.lang === 'en' ? 'slide' : '슬라이드');
+      card.setAttribute('aria-label', `${i + 1} / ${projectCards.length}`);
+    });
+    document.getElementById('project-prev').setAttribute('aria-label', state.lang === 'en' ? 'Previous project' : '이전 프로젝트');
+    document.getElementById('project-next').setAttribute('aria-label', state.lang === 'en' ? 'Next project' : '다음 프로젝트');
+    const position = document.getElementById('project-position');
+    position.textContent = `${String(projectIndex + 1).padStart(2, '0')} / ${String(projectCards.length).padStart(2, '0')}`;
+    position.setAttribute('aria-label', `${projectIndex + 1} / ${projectCards.length} · ${projectCards[projectIndex].querySelector('h3').textContent}`);
+  }
+  document.getElementById('project-prev').addEventListener('click', () => showProject(projectIndex - 1));
+  document.getElementById('project-next').addEventListener('click', () => showProject(projectIndex + 1));
+  projectCarousel.addEventListener('keydown', event => {
+    if (!event.target.closest('.project-navigation')) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showProject(projectIndex + (event.key === 'ArrowLeft' ? -1 : 1));
+    }
+  });
 
   function renderTopics() {
     const selector = document.getElementById('topic-selector');
@@ -74,6 +103,7 @@
     document.title=lang==='en'?'Jin-Woo Kim · 김진우 | Research & Projects':'김진우 · Jin-Woo Kim | 연구와 프로젝트';
     renderPapers();
     renderTopics();
+    showProject(projectIndex);
     try{localStorage.setItem('jwk-language',lang);}catch{}
   }
   document.getElementById('language-switch').addEventListener('click',()=>changeLanguage(state.lang==='en'?'ko':'en'));
@@ -92,6 +122,14 @@
   });
 
   function openFromHash() {
+    const projectTarget = document.getElementById(location.hash.slice(1));
+    const projectCard = projectTarget?.closest('.project-card');
+    if (projectCard) {
+      showProject(projectCards.indexOf(projectCard));
+      if (projectTarget.tagName === 'DETAILS') projectTarget.open = true;
+      requestAnimationFrame(() => document.getElementById('projects').scrollIntoView({block:'start'}));
+      return;
+    }
     if(location.hash === '#area-all') {
       history.replaceState(null,'','#areas');
     }
@@ -116,7 +154,7 @@
     requestAnimationFrame(()=>target.scrollIntoView({block:'start',behavior:'smooth'}));
   }
   document.addEventListener('click',event=>{
-    const link=event.target.closest('a[href^="#paper-"], a[href^="#work-"]');
+    const link=event.target.closest('a[href^="#paper-"], a[href^="#work-"], a[href^="#project-"]');
     if(link && link.hash===location.hash) openFromHash();
     const gc=event.target.closest('a[href="#gc-details"]');
     if(gc) document.getElementById('gc-details').open=true;
