@@ -13,7 +13,7 @@ window.portfolioPapers = [
   },
   {
     id:'ptimm',year:'2026',type:'conference',venue:'IEEE MetaCom 2026 · Meta-XP Workshop',
-    shortVenue:'MetaCom Workshop 2026',status:{en:'Accepted · Workshop',ko:'채택 · 워크숍'},
+    shortVenue:'MetaCom Workshop 2026',status:{en:'Presented · Nov 7, 2026',ko:'발표 · 2026년 11월 7일'},
     title:'Destination-Guided Pedestrian Trajectory Prediction for Digital Twin Synchronization',
     authors:'<strong>Jin-Woo Kim</strong>, Min-Su Kim, and Hyun-Suk Lee',
     image:'assets/pt-imm.webp',
